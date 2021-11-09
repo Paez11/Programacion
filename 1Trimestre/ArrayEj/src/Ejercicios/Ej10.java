@@ -1,15 +1,15 @@
 /*
-Implementa la funciÛn: int [] suma(int []t, int nElem), que cree y devuelva un array con
+Implementa la funci√≥n: int [] suma(int []t, int nElem), que cree y devuelva un array con
 las sumas de los nElem elementos consegutivos del array t. Mira este ejemplo:
 t={8,7,9,3,4,11,2}
 nElem=3
-soluciÛn:
+soluci√≥n:
 8+7+9=24
 7+9+3=19
 9+3+4=16
 3+4+11=18
 4+11+2=17
-La funciÛn devolver· un array con el contenido {24,19,16,18,17}
+La funci√≥n devolver√° un array con el contenido {24,19,16,18,17}
  */
 
 
@@ -77,14 +77,12 @@ public class Ej10 {
 		int suma=0;
 		int lon=t.length;
 		int []sumaArray = new int [lon] ;
-		for (int i=0;i<t.length;i++) {
-			while(i<=nElem) {
+		for (int i=0;i<n.Elem;i++) {
 				suma+=t[i];
 				for(int j=0;j<sumaArray.length;j++) {
 					sumaArray[j]=suma;
 				}
 				System.out.println(suma);
-			}
 		}
 		return sumaArray;
 	}
