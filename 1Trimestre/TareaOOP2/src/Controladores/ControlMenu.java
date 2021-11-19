@@ -7,10 +7,11 @@ import vistas.Menus;
 public class ControlMenu {
 	
 	public static void menuPrincipal(Empleado e1) {
+		
 		int opcion=-1;
 		int op2=0;
 		int aumento=0;
-		//Scanner teclado = new Scanner(System.in);
+		
 		
 		do {
 			
