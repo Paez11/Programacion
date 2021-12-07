@@ -10,7 +10,7 @@ public class Ejecutable {
 		
 		System.out.println(a1);
 		
-		Grupo g1 = new Grupo ("PrimeroSMR", 7);
+		Grupo g1 = new Grupo ("PrimeroSMR", 2);
 		System.out.println(g1);
 		
 		System.out.println();
@@ -20,8 +20,12 @@ public class Ejecutable {
 		
 		g1.newAlumno(a1);
 		
+		Alumno a2 = new Alumno("Sergio", 6.45);
+		g1.newAlumno(a2);
+		
 		System.out.println(g1);
 		
+		g1.mejorNota(g1);
 		
 		/*
 		g1.mejorNota(g1);

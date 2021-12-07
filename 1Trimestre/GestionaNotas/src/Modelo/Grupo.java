@@ -12,6 +12,7 @@ public class Grupo {
 		this.nombreGrupo = nombreGrupo;
 		grupo = new Alumno [numAlumno];
 	}
+	
 
 	public String getNombreGrupo() {
 		return nombreGrupo;
@@ -196,40 +197,44 @@ public class Grupo {
 	}
 	
 	/**
-	 * Funcion para saber cual es la mejor nota del grupo. Te mostrara la nota y la posicion de esta en el array. No he logrado hacer que te devuelva el nombre del alumno con la nota
+	 * Funcion para saber cual es la mejor nota del grupo. Te mostrara la nota, el nombre del alumno y la posicion del array
 	 * @param nombreGrupo: Introduce el grupo del que se quiera saber la mejor nota
 	 */
 	public void mejorNota(Grupo nombreGrupo) {
 		
 		Double aux=0.0;
 		int indice=0;
+		String alum="";
 		
 		for (int i = 0; i < grupo.length; i++) {
 			if (grupo[i].getNota()>aux) {
 				aux=grupo[i].getNota();
 				indice=i;
+				alum=grupo[i].getNombre();
 			}
 		}
-		System.out.println("La nota mayor es: "+aux+" y se encuentra en: "+indice);
+		System.out.println("La nota mayor es: "+aux+" y es: "+alum+" en la posicion: "+indice);
 		
 	}
 	
 	/**
-	 * Funcion para saber cual es la nota mas baja en el grupo. Te mostrara la nota y la posicion de este en el array.
+	 * Funcion para saber cual es la nota mas baja en el grupo. Te mostrara la nota, el nombre del alumno y la posicion del array
 	 * @param nombreGrupo: Introduce el nombre del grupo
 	 */
 	public void peorNota(Grupo nombreGrupo) {
 		
 		Double aux=10.00;
 		int indice=0;
+		String alum="";
 		
 		for (int i = 1; i < grupo.length; i++) {
 			if (grupo[i].getNota()<aux) {
 				aux=grupo[i].getNota();
 				indice=i;
+				alum=grupo[i].getNombre();
 			}
 		}
-		System.out.println("La nota más baja es: "+aux+" y se encuentra en: "+indice);
+		System.out.println("La nota más baja es: "+aux+" y es: "+alum+" en la posicion: "+indice);
 		
 	}
 	

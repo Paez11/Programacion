@@ -9,6 +9,12 @@ public class Alumno {
 		this.nombre = nombre;
 		this.nota = nota;
 	}
+	
+	public Alumno() {
+		this.nombre ="";
+		this.nota =0.0;
+	}
+	
 
 
 	public String getNombre() {
