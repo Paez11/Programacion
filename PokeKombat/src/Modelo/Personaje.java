@@ -60,7 +60,7 @@ public class Personaje {
 	 * @return devuelve la variable con un numero aleatorio para el ataque
 	 */
 	public int ataqueFisico() {
-		int ataque=(int) Math.floor(Math.random()*this.ataque+1);
+		int ataque=(int)Math.random()*this.ataque+1;
 		
 		return ataque;
 	}
@@ -70,7 +70,8 @@ public class Personaje {
 	 * @return devuelve un numero aleatorio para la defensa
 	 */
 	public int defensaFisico() {
-		int defensa=(int) Math.floor(Math.random()*this.defensa+1);
+		int aleatorio=(int)Math.random();
+		int defensa=aleatorio*this.defensa+1;
 		
 		return defensa;
 	}
@@ -80,7 +81,12 @@ public class Personaje {
 	 * @param vida la vida que cambiara al restarle en un ataque
 	 */
 	public void daño(int vida) {
-		this.vida=this.vida-vida;
+		
+		if(this.defensaFisico()<=0) {
+			this.vida=this.vida-vida;
+		}else {
+			this.vida=(this.vida+this.defensaFisico())-vida;
+		}
 	}
 
 	@Override

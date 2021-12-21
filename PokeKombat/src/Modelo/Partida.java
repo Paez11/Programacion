@@ -3,6 +3,7 @@ package Modelo;
 import java.util.Arrays;
 
 import Utils.Lee;
+import Vistas.Imprimir;
 import Vistas.Menus;
 
 public class Partida {
@@ -37,25 +38,23 @@ public class Partida {
 		int opcion=0;
 		
 		Menus.menuSelectPersonaje();
-		System.out.print("Selecciona un personaje: ");
 		opcion=Lee.Entero();
-		System.out.println();
-		System.out.println("--------------------------------------------------------");
+		Imprimir.salto();
 		
 		for (int i = 0; i < luchadores.length; i++) {
 			switch (opcion) {
 			
 			case 0:
 				player1=luchadores[0];
-				System.out.println("Ha elegido a: \n"+luchadores[0]);
 				cpu=luchadores[1];
 				i=luchadores.length;
+				Imprimir.eleccion(player1);
 				break;
 			case 1:
-				player1=luchadores[1];
-				System.out.println("Ha elegido a: \n"+luchadores[1]);
+				player1=(Mago)luchadores[1];
 				cpu=luchadores[0];
 				i=luchadores.length;
+				Imprimir.eleccion(player1);
 				break;
 			default:
 				System.out.println("Opcion no valida");
@@ -63,6 +62,21 @@ public class Partida {
 			}
 		}
 		return opcion;
+		
+	}
+	
+	
+	public static boolean dificultad(int opcion) {
+		boolean modo=false;
+		
+		if(opcion==1) {		
+			
+		}
+		if(opcion==2) {
+			
+		}
+		
+		return modo;
 	}
 	
 	public static void lucha() {
@@ -72,7 +86,7 @@ public class Partida {
 		
 		Menus.pausa();
 		Menus.introduccion();
-		System.out.println(cpu);
+		Imprimir.eleccion(cpu);
 		Menus.pausa();
 		
 		do {
@@ -82,12 +96,11 @@ public class Partida {
 			switch (opcion) {
 				case 1:
 					cpu.daño(player1.ataqueFisico());
-					System.out.println("Defensa " +cpu.defensaFisico());
-					System.out.println(cpu.getNombre()+" ha recibido un daño de: "+player1.ataqueFisico());
-					System.out.println("vida restante de "+cpu.getNombre()+" "+cpu.getVida());
+					Imprimir.batalla(player1, cpu);
 					
 					break;
 				case 2:
+					int defensa=player1.defensaFisico()+player1.getVida();
 					break;
 				case 3:
 					break;
@@ -100,9 +113,7 @@ public class Partida {
 			switch (cpuDecision()) {
 				case 1:
 					player1.daño(cpu.ataqueFisico());
-					System.out.println("Defensa " +player1.defensaFisico());
-					System.out.println(player1.getNombre()+" ha recibido un daño de: "+cpu.ataqueFisico());
-					System.out.println("vida restante de "+player1.getNombre()+" "+player1.getVida());
+					Imprimir.batalla(cpu, player1);
 					break;
 				case 2:
 					break;
@@ -130,9 +141,8 @@ public class Partida {
 	}
 	
 	public static int cpuDecision() {
-		int opcion;
-		opcion=(int) Math.floor(Math.random()*3+1);
-		return opcion;
+		int aleatorio=(int)Math.random()*3+1;
+		return aleatorio;
 	}
 
 	@Override

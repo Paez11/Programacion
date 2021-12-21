@@ -24,7 +24,8 @@ public class Guerrero extends Personaje {
 	
 	@Override
 	public int ataqueFisico() {
-		int ataque=(int) Math.floor(Math.random()*this.getAtaque()+1);
+		int aleatorio=(int)Math.random();
+		int ataque=aleatorio*this.getAtaque();
 		
 		return this.poderAtaque+ataque;
 	}

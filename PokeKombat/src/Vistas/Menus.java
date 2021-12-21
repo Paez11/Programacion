@@ -14,6 +14,7 @@ public class Menus {
 		System.out.println("Pulsa 0 para elegir a Spike");
 		System.out.println("Pulsa 1 para elegir a Malko");
 		System.out.println();
+		System.out.println("Selecciona un personaje: ");
 	}
 	
 	public static void menuLucha() {
