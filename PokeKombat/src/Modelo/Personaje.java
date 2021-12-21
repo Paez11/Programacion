@@ -1,11 +1,15 @@
 package Modelo;
 
+import java.util.Random;
+
 public class Personaje {
 	
 	private String nombre;
 	private int vida;
-	private int ataque;
-	private int defensa;
+	protected int ataque;
+	protected int defensa;
+	
+	protected Random rand = new Random(System.nanoTime());
 	
 	public Personaje(String nombre, int vida, int ataque, int defensa) {
 		super();
@@ -60,8 +64,7 @@ public class Personaje {
 	 * @return devuelve la variable con un numero aleatorio para el ataque
 	 */
 	public int ataqueFisico() {
-		int ataque=(int)Math.random()*this.ataque+1;
-		
+		int ataque=rand.nextInt(this.ataque);
 		return ataque;
 	}
 	
@@ -70,8 +73,7 @@ public class Personaje {
 	 * @return devuelve un numero aleatorio para la defensa
 	 */
 	public int defensaFisico() {
-		int aleatorio=(int)Math.random();
-		int defensa=aleatorio*this.defensa+1;
+		int defensa=rand.nextInt(this.defensa);
 		
 		return defensa;
 	}

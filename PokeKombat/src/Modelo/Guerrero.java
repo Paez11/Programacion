@@ -1,5 +1,6 @@
 package Modelo;
 
+
 public class Guerrero extends Personaje {
 	
 	private int poderAtaque;
@@ -24,9 +25,7 @@ public class Guerrero extends Personaje {
 	
 	@Override
 	public int ataqueFisico() {
-		int aleatorio=(int)Math.random();
-		int ataque=aleatorio*this.getAtaque();
-		
+		int ataque=rand.nextInt(this.ataque);
 		return this.poderAtaque+ataque;
 	}
 

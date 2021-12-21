@@ -8,12 +8,18 @@ import Vistas.Menus;
 
 public class Partida {
 	private Personaje [] luchadores;
+	private Guerrero [] guerreros;
+	private Mago [] magos;
 	static Personaje player1;
 	static Personaje cpu;
 
-	public Partida(Personaje[] luchador, int numLuchadores, String nombre) {
+	public Partida(Personaje[] luchador, int numLuchadores, Guerrero [] guerreros, Mago [] magos, int numGuerreros, int numMagos) {
 		this.luchadores = luchador;
+		this.guerreros = guerreros;
+		this.magos = magos;
 		luchadores = new Personaje [numLuchadores];
+		guerreros = new Guerrero [numGuerreros];
+		magos = new Mago [numMagos];
 		player1 = new Personaje();
 		cpu = new Personaje();
 	}
@@ -26,7 +32,49 @@ public class Partida {
 		this.luchadores = luchadores;
 	}
 	
+	public Guerrero[] getGuerreros() {
+		return guerreros;
+	}
+
+	public void setGuerreros(Guerrero[] guerreros) {
+		this.guerreros = guerreros;
+	}
+
+	public Mago[] getMagos() {
+		return magos;
+	}
+
+	public void setMagos(Mago[] magos) {
+		this.magos = magos;
+	}
+
 	
+	public static void Principal(Personaje[] luchador, Guerrero [] guerreros, Mago [] magos) {
+		int op=-1;
+		do {
+			Menus.menuPrincipal();
+			op=Lee.Entero();
+			
+			switch(op) {
+				case 1:
+					
+					break;
+				case 2:
+					seleccionarClase(guerreros, magos);
+					break;
+				case 3:
+					Imprimir.salto();
+					muestraPersonajes(luchador);
+					Imprimir.pausa();
+					break;
+				case 0:
+					break;
+			}
+		}while(op>0);
+		Imprimir.end();
+
+	}
+
 	public static void muestraPersonajes(Personaje [] luchadores) {
 		for (int i = 0; i < luchadores.length; i++) {
 			System.out.println(luchadores[i]);
@@ -34,33 +82,26 @@ public class Partida {
 		}
 	}
 	
-	public static int seleccionarPersonaje(Personaje [] luchadores) {
+	public static int seleccionarClase(Guerrero [] guerreros, Mago [] magos) {
+		int eleccion=0;
 		int opcion=0;
 		
-		Menus.menuSelectPersonaje();
-		opcion=Lee.Entero();
-		Imprimir.salto();
-		
-		for (int i = 0; i < luchadores.length; i++) {
-			switch (opcion) {
-			
-			case 0:
-				player1=luchadores[0];
-				cpu=luchadores[1];
-				i=luchadores.length;
-				Imprimir.eleccion(player1);
-				break;
-			case 1:
-				player1=(Mago)luchadores[1];
-				cpu=luchadores[0];
-				i=luchadores.length;
-				Imprimir.eleccion(player1);
-				break;
-			default:
-				System.out.println("Opcion no valida");
-				break;
-			}
-		}
+		do {
+			Menus.seleccionar();
+			opcion=Lee.Entero();
+				switch (opcion) {
+					case 1:
+						break;
+					case 2:
+						break;
+					case 0:
+						break;
+					default:
+						Imprimir.error();
+						break;
+				}
+		}while(opcion>0);
+
 		return opcion;
 		
 	}
@@ -81,63 +122,64 @@ public class Partida {
 	
 	public static void lucha() {
 		
-		boolean vivo=true;
 		int opcion=0;
 		
-		Menus.pausa();
-		Menus.introduccion();
-		Imprimir.eleccion(cpu);
-		Menus.pausa();
+		if(player1!=null && cpu!=null) {
+			Imprimir.pausa();
+			Imprimir.introduccion();
+			Imprimir.eleccion(cpu);
+			Imprimir.pausa();
 		
-		do {
-			Menus.menuLucha();
-			opcion=Lee.Entero();
+		
+			do {
+				Menus.menuLucha();
+				opcion=Lee.Entero();
+				
+				switch (opcion) {
+					case 1:
+						cpu.daño(player1.ataqueFisico());
+						Imprimir.batalla(player1, cpu);
+						
+						break;
+					case 2:
+						int defensa=player1.defensaFisico()+player1.getVida();
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					default:
+						break;
+				}
+				
+				switch (cpuDecision()) {
+					case 1:
+						player1.daño(cpu.ataqueFisico());
+						Imprimir.batalla(cpu, player1);
+						break;
+					case 2:
+						break;
+					case 3:
+						break;
+					case 4:
+						break;
+					default:
+						break;
+				}
+				
+				
+			}while(cpu.getVida()>0 && player1.getVida()>0);
 			
-			switch (opcion) {
-				case 1:
-					cpu.daño(player1.ataqueFisico());
-					Imprimir.batalla(player1, cpu);
-					
-					break;
-				case 2:
-					int defensa=player1.defensaFisico()+player1.getVida();
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				default:
-					break;
+			if(cpu.getVida()<=0) {
+				Imprimir.ganar(cpu);
+			}else if (player1.getVida()<=0) {
+				Imprimir.perder();
 			}
-			
-			switch (cpuDecision()) {
-				case 1:
-					player1.daño(cpu.ataqueFisico());
-					Imprimir.batalla(cpu, player1);
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-				default:
-					break;
-			}
-			
-			
-		}while(cpu.getVida()>0 && player1.getVida()>0);
-		
-		
-		if(cpu.getVida()<0) {
-			System.out.println("Derrotastes a "+cpu.getNombre());
-			System.out.println("\n\t\tVICTORIA");
-		}else if (player1.getVida()<0) {
-			System.out.println("Te derrotaron");
-			System.out.println("\n\t\tDERROTA");
+		}else {
+			Imprimir.error();
 		}
-		
-		System.out.println("\n\n\tFIN DE PROGRAMA");
+
+		Imprimir.end();
 	}
 	
 	public static int cpuDecision() {
@@ -147,8 +189,10 @@ public class Partida {
 
 	@Override
 	public String toString() {
-		return "luchadores: "+ Arrays.toString(luchadores);
+		return "luchadores: " + Arrays.toString(luchadores) + " guerreros=" + Arrays.toString(guerreros)
+				+ ", magos=" + Arrays.toString(magos);
 	}
+	
 	
 	
 	

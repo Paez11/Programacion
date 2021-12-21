@@ -25,9 +25,7 @@ public class Mago extends Personaje{
 	
 	@Override
 	public int defensaFisico() {
-		int aleatorio=(int)Math.random();
-		int defensa=aleatorio*this.getDefensa()+1;
-		
+		int defensa=rand.nextInt(this.defensa);
 		return this.poderDefensa+defensa;
 	}
 	
