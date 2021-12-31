@@ -11,7 +11,7 @@ public class Guerrero extends Personaje {
 	}
 	
 	public Guerrero() {
-		super("", 100, 2, 1);
+		super();
 		this.poderAtaque = 5;
 	}
 

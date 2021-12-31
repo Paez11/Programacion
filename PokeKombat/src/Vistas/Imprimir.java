@@ -36,6 +36,20 @@ public class Imprimir {
 		System.out.println(p2.getNombre()+" ha recibido un daño de: "+p1.ataqueFisico());
 		System.out.println("vida restante de "+p2.getNombre()+" "+p2.getVida());
 	}
+	
+	public static void curar(Personaje p1) {
+		System.out.println();
+		System.out.println(p1.getNombre()+" Se ha curado ");
+		System.out.println("Ahora tiene "+p1.getVida());
+	}
+	public static void sinCuras() {
+		System.out.println("No te quedan curaciones");
+	}
+	
+	public static void huir() {
+		System.out.println("Has huido del combate");
+	}
+	
 	public static void salto() {
 		System.out.println();
 		System.out.println("--------------------------------------------------------");
@@ -44,8 +58,29 @@ public class Imprimir {
 		System.out.println("Ha elegido a: \n"+p1);
 	}
 	
+	public static void seleccionarGuerrero() {
+		System.out.println("Seleccione a un personaje");
+		System.out.println("1 para Spike");
+	}
+	public static void seleccionarMago() {
+		System.out.println("Seleccione a un personaje");
+		System.out.println("1 para Malko");
+	}
+	
+	public static void dificultad() {
+		System.out.println("Elige la dificultad a la que desea jugar");
+		System.out.println("1 para jugar en dificultad normal");
+		System.out.println("2 para jugar en dificultad dificil");
+		
+	}
+	
+	
 	public static void end() {
-		System.out.println("\n\n\tFIN DE PROGRAMA");
+		System.out.println("\n\n\tFIN DE LA LUCHA");
+	}
+	
+	public static void salir() {
+		System.out.println("\n\n\tFIN DEL PROGRAMA");
 	}
 	
 	public static void ganar(Personaje p1) {

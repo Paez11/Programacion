@@ -11,7 +11,7 @@ public class Mago extends Personaje{
 		this.poderDefensa = poderDefensa;
 	}
 	public Mago() {
-		super("", 100, 2, 1);
+		super();
 		this.poderDefensa = 5;
 	}
 
