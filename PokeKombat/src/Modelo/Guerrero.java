@@ -5,8 +5,8 @@ public class Guerrero extends Personaje {
 	
 	private int poderAtaque;
 
-	public Guerrero(String nombre, int vida, int ataque, int defensa, int poderAtaque) {
-		super(nombre, vida, ataque, defensa);
+	public Guerrero(String nombre, int vida, int ataque, int defensa, int poderAtaque, int vidaMaxima) {
+		super(nombre, vida, ataque, defensa, vidaMaxima);
 		this.poderAtaque = poderAtaque;
 	}
 	
@@ -26,7 +26,7 @@ public class Guerrero extends Personaje {
 	@Override
 	public int ataqueFisico() {
 		int ataque=rand.nextInt(this.ataque);
-		return this.poderAtaque+ataque;
+		return (this.poderAtaque+ataque);
 	}
 
 	@Override

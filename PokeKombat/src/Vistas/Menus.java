@@ -2,6 +2,8 @@ package Vistas;
 
 import java.util.Scanner;
 
+import Modelo.Personaje;
+
 public class Menus {
 	
 
@@ -16,16 +18,11 @@ public class Menus {
 		System.out.println("Pulse 0 para salir");
 	}
 	
-	public static void seleccionar() {
-		System.out.println();
-		System.out.println("Pulse 1 para ver los guerreros");
-		System.out.println("Pulse 2 para ver a los magos");
-		System.out.println("Pulse 0 para salir");
-	}
+
 	
 	public static void menuSelectPersonaje() {
-		System.out.println("Pulsa 0 para elegir a Spike");
-		System.out.println("Pulsa 1 para elegir a Malko");
+		System.out.println("Pulsa 1 para elegir a Spike");
+		System.out.println("Pulsa 2 para elegir a Malko");
 		System.out.println();
 		System.out.println("Selecciona un personaje: ");
 	}
@@ -37,5 +34,14 @@ public class Menus {
 	}
 	
 
+	public static void muestraPersonajes(Personaje [] luchadores) {
+		for (int i = 0; i < luchadores.length; i++) {
+			if(luchadores[i]==null) {
+				System.out.println("null");
+			}
+			System.out.println(luchadores[i]);
+			System.out.println();
+		}
+	}
 	
 }

@@ -58,15 +58,6 @@ public class Imprimir {
 		System.out.println("Ha elegido a: \n"+p1);
 	}
 	
-	public static void seleccionarGuerrero() {
-		System.out.println("Seleccione a un personaje");
-		System.out.println("1 para Spike");
-	}
-	public static void seleccionarMago() {
-		System.out.println("Seleccione a un personaje");
-		System.out.println("1 para Malko");
-	}
-	
 	public static void dificultad() {
 		System.out.println("Elige la dificultad a la que desea jugar");
 		System.out.println("1 para jugar en dificultad normal");

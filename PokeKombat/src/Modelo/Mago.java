@@ -6,8 +6,8 @@ public class Mago extends Personaje{
 
 	
 	
-	public Mago(String nombre, int vida, int ataque, int defensa, int poderDefensa) {
-		super(nombre, vida, ataque, defensa);
+	public Mago(String nombre, int vida, int ataque, int defensa, int poderDefensa, int vidaMaxima) {
+		super(nombre, vida, ataque, defensa, vidaMaxima);
 		this.poderDefensa = poderDefensa;
 	}
 	public Mago() {
@@ -26,7 +26,7 @@ public class Mago extends Personaje{
 	@Override
 	public int defensaFisico() {
 		int defensa=rand.nextInt(this.defensa);
-		return this.poderDefensa+defensa;
+		return (this.poderDefensa+defensa);
 	}
 	
 	

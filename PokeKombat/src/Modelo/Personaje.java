@@ -8,15 +8,17 @@ public class Personaje {
 	private int vida;
 	protected int ataque;
 	protected int defensa;
+	private final int vidaMaxima;
 	
 	protected Random rand = new Random(System.nanoTime());
 	
-	public Personaje(String nombre, int vida, int ataque, int defensa) {
+	public Personaje(String nombre, int vida, int ataque, int defensa, int vidaMaxima) {
 		super();
 		this.nombre = nombre;
 		this.vida = vida;
 		this.ataque = ataque;
 		this.defensa = defensa;
+		this.vidaMaxima = vidaMaxima;
 	}
 	
 	public Personaje() {
@@ -25,6 +27,7 @@ public class Personaje {
 		this.vida = 100;
 		this.ataque = 2;
 		this.defensa = 1;
+		this.vidaMaxima = 100;
 	}
 
 	public String getNombre() {
@@ -40,7 +43,9 @@ public class Personaje {
 	}
 
 	public void setVida(int vida) {
-		this.vida = vida;
+		int vidapost=this.vida+vida;
+		if(vidapost<=vidaMaxima)
+			this.vida = vidapost;
 	}
 
 	public int getAtaque() {
@@ -57,6 +62,10 @@ public class Personaje {
 
 	public void setDefensa(int defensa) {
 		this.defensa = defensa;
+	}
+	
+	public int getvidaMaxima() {
+		return vidaMaxima;
 	}
 	
 	/**
