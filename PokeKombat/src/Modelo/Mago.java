@@ -26,6 +26,7 @@ public class Mago extends Personaje{
 	@Override
 	public int defensaFisico() {
 		int defensa=rand.nextInt(this.defensa);
+		
 		return (this.poderDefensa+defensa);
 	}
 	

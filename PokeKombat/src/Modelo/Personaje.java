@@ -43,9 +43,7 @@ public class Personaje {
 	}
 
 	public void setVida(int vida) {
-		int vidapost=this.vida+vida;
-		if(vidapost<=vidaMaxima)
-			this.vida = vidapost;
+		this.vida=vida;
 	}
 
 	public int getAtaque() {
@@ -91,13 +89,32 @@ public class Personaje {
 	 * Metodo para restar a la vida de un personaje
 	 * @param vida la vida que cambiara al restarle en un ataque
 	 */
-	public void daño(int vida) {
-		
-		if(this.defensaFisico()<=0) {
-			this.vida=this.vida-vida;
-		}else {
-			this.vida=(this.vida+this.defensaFisico())-vida;
+	public void dano(int vida) {
+		this.vida=(this.vida+defender(this.defensaFisico()))-vida;
+	}
+	
+	/**
+	 * Metodo para usar la funcion de defensa en un modo controlado
+	 * @param defensa: la variable que recibira la funcion que funcionara como su defensa
+	 */
+	public int defender(int defensa) {
+		if(this.defensaFisico()<=this.defensa) {
+			this.vida=this.vida+defensa;
 		}
+		return defensa;
+	}
+	
+	/**
+	 * Metodo para recuperar vida
+	 * @param curacion la cantidad de vida que se recuperara
+	 * @return devulve el valor completo de la vida con lo que se ha curado
+	 */
+	public int curar(int curacion) {
+		int vidapost=this.vida+vida;
+		if(vidapost<=vidaMaxima)
+			this.vida = vidapost;
+		
+		return (this.vida+curacion);
 	}
 
 	@Override

@@ -7,18 +7,35 @@ import Modelo.Personaje;
 public class Imprimir {
 	
 	public static void inicio() {
-		System.out.println("\n\t\tBienvenido \n\t\t    a \n\t\tPokeKombat");
+		System.out.println("\n\t\tBienvenido \n\t\t");
 		System.out.println();
+		logo();
 		System.out.println("----------------------------------------------------------------------------------------------------------");
 		System.out.println("PokeKombat es un juego de peleas por turnos.\n En este seleccionas unos de nuestros campeones que estan divididos en dos clases. \n"
-				+ "Diponemos de dos modos de juego, \n uno para pelear contra otro jugador en la misma m�quina y otro contra la cpu. \n"
-				+ "En este modo dispondr� de dos modos de juego, normal, el \n cual resetear� tu vida para seguir jugando contra nuevos oponentes \n"
-				+ "y heroico, que jugaras con la misma vida hasta \n el final. Si lo consigues obtendras una recompensa �nica.");
+				+ "Diponemos de dos modos de juego, \n uno para pelear contra otro jugador en la misma máquina y otro contra la cpu. \n"
+				+ "En este modo dispondrá de dos modos de juego, normal, el \n cual reseteará tu vida para seguir jugando contra nuevos oponentes \n"
+				+ "y heroico, que jugaras con la misma vida hasta \n el final. Si lo consigues obtendras una recompensa única.");
 		System.out.println("----------------------------------------------------------------------------------------------------------");
 	}
-	
-	
+	public static void logo() {
+		System.out.println("   ▄███████▄  ▄██████▄     ▄█   ▄█▄    ▄████████    ▄█   ▄█▄  ▄██████▄    ▄▄▄▄███▄▄▄▄   ▀█████████▄     ▄████████     ███   ");
+		System.out.println("  ███    ███ ███    ███   ███ ▄███▀   ███    ███   ███ ▄███▀ ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███   ███    ███ ▀█████████▄ ");
+		System.out.println("  ███    ███ ███    ███   ███▐██▀     ███    █▀    ███▐██▀   ███    ███ ███   ███   ███   ███    ███   ███    ███    ▀███▀▀██ ");
+		System.out.println("  ███    ███ ███    ███  ▄█████▀     ▄███▄▄▄      ▄█████▀    ███    ███ ███   ███   ███  ▄███▄▄▄██▀    ███    ███     ███   ▀ ");
+		System.out.println("▀█████████▀  ███    ███ ▀▀█████▄    ▀▀███▀▀▀     ▀▀█████▄    ███    ███ ███   ███   ███ ▀▀███▀▀▀██▄  ▀███████████     ███     ");
+		System.out.println("  ███        ███    ███   ███▐██▄     ███    █▄    ███▐██▄   ███    ███ ███   ███   ███   ███    ██▄   ███    ███     ███     ");
+		System.out.println("  ███        ███    ███   ███ ▀███▄   ███    ███   ███ ▀███▄ ███    ███ ███   ███   ███   ███    ███   ███    ███     ███    ");
+		System.out.println(" ▄████▀       ▀██████▀    ███   ▀█▀   ██████████   ███   ▀█▀  ▀██████▀   ▀█   ███   █▀  ▄█████████▀    ███    █▀     ▄████▀   ");
+		System.out.println("                          ▀                        ▀                                                                         ");
+	}
+
 	public static void introduccion() {
+		System.out.println();
+		System.out.println("Preparaos para luchar");
+		System.out.println();
+	}
+	
+	public static void introduccion2() {
 		System.out.println();
 		System.out.println("Preparate para luchar");
 		System.out.println();
@@ -31,10 +48,15 @@ public class Imprimir {
 		teclado.nextLine();
 	}
 	
-	public static void batalla(Personaje p1,Personaje p2) {
+	public static void ataque(Personaje p1,Personaje p2) {
 		System.out.println();
-		System.out.println(p2.getNombre()+" ha recibido un da�o de: "+p1.ataqueFisico());
+		System.out.println(p2.getNombre()+" ha recibido un daño de: "+p1.ataqueFisico());
 		System.out.println("vida restante de "+p2.getNombre()+" "+p2.getVida());
+	}
+	
+	public static void defensa(Personaje p1) {
+		System.out.println();
+		System.out.println(p1.getNombre()+ " ha realizado defensa "+p1.defensaFisico());
 	}
 	
 	public static void curar(Personaje p1) {
@@ -42,6 +64,13 @@ public class Imprimir {
 		System.out.println(p1.getNombre()+" Se ha curado ");
 		System.out.println("Ahora tiene "+p1.getVida());
 	}
+	
+	public static void status(Personaje p1, int curas) {
+		System.out.println();
+		System.out.println(p1.getNombre()+" -->");
+		System.out.println("vida: "+p1.getVida()+" defensa: " + p1.defensaFisico() + " curas: " + curas);
+	}
+	
 	public static void sinCuras() {
 		System.out.println("No te quedan curaciones");
 	}
@@ -74,6 +103,11 @@ public class Imprimir {
 		System.out.println("\n\n\tFIN DEL PROGRAMA");
 	}
 	
+	public static void ganador(Personaje p1) {
+		System.out.println("El ganador es "+p1.getNombre());
+		System.out.println("\n\t\tVICTORIA");
+	}
+	
 	public static void ganar(Personaje p1) {
 		System.out.println("Derrotastes a "+p1.getNombre());
 		System.out.println("\n\t\tVICTORIA");
@@ -85,6 +119,10 @@ public class Imprimir {
 	
 	public static void error() {
 		System.out.println("error");
+	}
+	
+	public static void completo() {
+		System.out.println("Has vencido a todos los luchadores");
 	}
 	
 }
