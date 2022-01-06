@@ -89,8 +89,12 @@ public class Personaje {
 	 * Metodo para restar a la vida de un personaje
 	 * @param vida la vida que cambiara al restarle en un ataque
 	 */
-	public void dano(int vida) {
-		this.vida=(this.vida+defender(this.defensaFisico()))-vida;
+	public int dano(int d) {
+		int d2=d-defender(defensaFisico());
+		if(d2>0) {
+			this.vida=this.vida-d2;
+		}
+		return this.vida;
 	}
 	
 	/**
@@ -98,9 +102,8 @@ public class Personaje {
 	 * @param defensa: la variable que recibira la funcion que funcionara como su defensa
 	 */
 	public int defender(int defensa) {
-		if(this.defensaFisico()<=this.defensa) {
-			this.vida=this.vida+defensa;
-		}
+		defensa=defensa+this.defensa;
+		
 		return defensa;
 	}
 	

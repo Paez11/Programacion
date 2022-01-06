@@ -12,12 +12,12 @@ public class Test {
 
 	public static void Juego() {
 		
-		Guerrero p1 = new Guerrero("Spike",100,70,15,40,100);
-		Mago p2 = new Mago("Malko",100,74,12,45,100);
-		Guerrero p3 = new Guerrero("Boxhot",100,60,30,10,100);
-		Mago p4 = new Mago("Wanda",100,20,40,50,100);
-		Guerrero p5 = new Guerrero("Shoto",100,25,45,40,100);
-		Mago p6 = new Mago("????",100,90,5,20,100); 
+		Guerrero p1 = new Guerrero("Spike",100,70,5,40,100);
+		Mago p2 = new Mago("Malko",100,74,6,20,100);
+		Guerrero p3 = new Guerrero("Boxhot",100,60,8,10,100);
+		Mago p4 = new Mago("Wanda",100,20,10,20,100);
+		Guerrero p5 = new Guerrero("Shoto",100,25,7,50,100);
+		Mago p6 = new Mago("????",100,90,2,18,100); 
 		
 		Personaje [] luchadores = new Personaje [6];
 		

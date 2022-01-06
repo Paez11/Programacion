@@ -51,7 +51,7 @@ public class Imprimir {
 	public static void ataque(Personaje p1,Personaje p2) {
 		System.out.println();
 		System.out.println(p2.getNombre()+" ha recibido un daño de: "+p1.ataqueFisico());
-		System.out.println("vida restante de "+p2.getNombre()+" "+p2.getVida());
+		System.out.println("vida restante de "+p2.getNombre()+" "+p2.getVida()+" defensa "+p2.defensaFisico());
 	}
 	
 	public static void defensa(Personaje p1) {
@@ -124,5 +124,7 @@ public class Imprimir {
 	public static void completo() {
 		System.out.println("Has vencido a todos los luchadores");
 	}
-	
+	public static void sinluchador() {
+		System.out.println("luchador no disponible o derrotado");
+	}
 }

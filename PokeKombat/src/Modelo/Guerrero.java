@@ -26,6 +26,7 @@ public class Guerrero extends Personaje {
 	@Override
 	public int ataqueFisico() {
 		int ataque=rand.nextInt(this.ataque);
+		
 		return (this.poderAtaque+ataque);
 	}
 
