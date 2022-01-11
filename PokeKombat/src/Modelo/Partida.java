@@ -14,7 +14,10 @@ public class Partida {
 	static Personaje player2;
 	static Personaje cpu;
 
-		
+	/**
+	 * Metodo el cual funcionara como un menu principal que mostrara por pantalla al usuario las posibilidades del juego
+	 * @param luchadores: recibira el array de personajes que se haya creado en el controlador
+	 */
 	public static void Principal(Personaje[] luchadores) {
 		int op=-1;
 		do {
@@ -44,7 +47,12 @@ public class Partida {
 		}while(op>0);
 	}
 
-		
+	/**
+	 * Metodo para seleccionar uno de los personajes dentro del array de personajes, al seleccionarlo este 
+	 * no se podrá volver a seleccionar
+	 * @param luchadores: Recibe el array de personajes entre los que se podrá elegir
+	 * @return devuelve la eleccion del usuario
+	 */
 	public static int seleccionarPersonajePlayer1(Personaje [] luchadores) {
 		
 		Menus.muestraPersonajes(luchadores);
@@ -84,6 +92,12 @@ public class Partida {
 		
 		return eleccion;
 	}
+	/**
+	 * Mismo metodo que seleccionarPersonajePlayer1 pero para otro jugador en el caso de que se quiera
+	 * jugar usuario vs usuario
+	 * @param luchadores: Recibe el array de personajes los cuales puede elegir
+	 * @return devuelve la eleccion del segundo usuario
+	 */
 	public static int seleccionarPersonajePlayer2(Personaje [] luchadores) {
 		
 		Menus.muestraPersonajes(luchadores);
@@ -124,6 +138,11 @@ public class Partida {
 		return eleccion;
 	}
 	
+	/**
+	 * Metodo para que la CPU eliga aleatoriamente uno de los personajes disponibles en el caso de que el usuario
+	 * quiera jugar contra la máquina
+	 * @param luchadores: Recibe el array de personajes disponibles
+	 */
 	public static void seleccionarCPU(Personaje [] luchadores) {
 		Random rand = new Random(System.nanoTime());
 		/*
@@ -169,6 +188,9 @@ public class Partida {
 		return modo;
 	}
 	
+	/**
+	 * Metodo el en el cual se desarrollara toda la lucha en el caso de usuario vs usuario 
+	 */
 	public static void lucha1() {
 		
 		int opcion=0;
@@ -275,6 +297,11 @@ public class Partida {
 		Imprimir.end();
 	}
 	
+	/**
+	 * Metodo en el que se desarrollara la lucha en el caso de que el usuario quiera jugar contra la maquina
+	 * @param luchadores: recibira el array de luchadores para que la maquina seleccione un personaje del array hasta
+	 * que se acabe
+	 */
 	public static void lucha2(Personaje [] luchadores) {
 		
 		int opcion=0;
@@ -389,6 +416,10 @@ public class Partida {
 		}
 	}
 	
+	/**
+	 * Metodo para que la maquina tome una decision aleatoria de las opciones disponibles en la lucha
+	 * @return devuelve un numero aleatorio entre las decisiones disponibles para que la maquina tome una
+	 */
 	public static int cpuDecision() {
 		Random rand = new Random(System.nanoTime());
 		int aleatorio=rand.nextInt(4);

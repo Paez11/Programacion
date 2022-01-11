@@ -24,6 +24,10 @@ public class Guerrero extends Personaje {
 	}
 	
 	@Override
+	/**
+	 * Metodo sobreescrito de ataque fisico que hara que los personajes que pertenezcan a la clase guerrero se les sume
+	 * al ataque aleatorio el poder de ataque que tengan
+	 */
 	public int ataqueFisico() {
 		int ataque=rand.nextInt(this.ataque);
 		

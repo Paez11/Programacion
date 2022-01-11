@@ -24,6 +24,10 @@ public class Mago extends Personaje{
 	}
 	
 	@Override
+	/**
+	 * Metodo sobreescrito de defensa que hara que los personajes que sean magos se le sume el poder de defensa a la
+	 * defensa aleatoria que tendran
+	 */
 	public int defensaFisico() {
 		int defensa=rand.nextInt(this.defensa);
 		
