@@ -172,22 +172,6 @@ public class Partida {
 		
 	}
 	
-	
-	public static boolean dificultad(int opcion) {
-		boolean modo=false;
-		
-		if(opcion==1) {		
-			modo=false;
-		}
-		if(opcion==2) {
-			modo=true;
-		}else {
-			modo=false;
-		}
-		
-		return modo;
-	}
-	
 	/**
 	 * Metodo el en el cual se desarrollara toda la lucha en el caso de usuario vs usuario 
 	 */
