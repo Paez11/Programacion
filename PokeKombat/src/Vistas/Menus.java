@@ -41,7 +41,7 @@ public class Menus {
 	public static void muestraPersonajes(Personaje [] luchadores) {
 		for (int i = 0; i < luchadores.length; i++) {
 			if(luchadores[i]==null) {
-				System.out.println("null");
+				System.out.println("luchador no disponible");
 			}
 			System.out.println(luchadores[i]);
 			System.out.println();
