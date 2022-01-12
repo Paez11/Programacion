@@ -145,26 +145,11 @@ public class Partida {
 	 */
 	public static void seleccionarCPU(Personaje [] luchadores) {
 		Random rand = new Random(System.nanoTime());
-		/*
-		int contador=0;
-		Personaje [] CPU;
+
 		for (int i = 0; i < luchadores.length; i++) {
-			if (luchadores[i]!=null) {
-				contador++;
-			}
-		}
-		CPU= new Personaje [contador];
-		for (int i = 0; i < luchadores.length; i++) {
-			for (int j = 0; j < CPU.length; j++) {
-				if (luchadores[i]!=null && CPU[j]==null) {
-					CPU[j]=luchadores[i];
-				}
-			}
-		}
-		*/
-		for (int i = 0; i < luchadores.length; i++) {
-			if (luchadores[i]!=null) {
+			if (luchadores[i]!=null && luchadores[i].getVida()>0) {
 				cpu=luchadores[rand.nextInt(luchadores.length)];
+				i=luchadores.length;
 			}else {
 				Imprimir.sinluchador();
 			}
@@ -376,6 +361,7 @@ public class Partida {
 				if(cpu.getVida()<=0) {
 					Imprimir.ganar(cpu);
 					terminar--;
+					cpu=null;
 				}else if (player1.getVida()<=0) {
 					Imprimir.perder();
 					terminar=-1;
