@@ -26,15 +26,19 @@ public class Partida {
 			
 			switch(op) {
 				case 1:
-					if(player1==null && player2==null) {
-						seleccionarPersonajePlayer1(luchadores);
+					seleccionarPersonajePlayer1(luchadores);
+					if(player1!=null) {
 						seleccionarPersonajePlayer2(luchadores);
+						if(player2!=null) {
+							lucha();
+						}
 					}
-					lucha1();
 					break;
 				case 2:
 					seleccionarPersonajePlayer1(luchadores);
-					lucha2(luchadores);
+					if(player1!=null) {
+						lucha(luchadores);
+					}
 					break;
 				case 3:
 					Imprimir.salto();
@@ -47,6 +51,49 @@ public class Partida {
 		}while(op>0);
 	}
 
+	
+	public static int seleccionarPersonaje(Personaje [] luchadores, Personaje player) {
+		
+		Menus.muestraPersonajes(luchadores);
+		Menus.menuSelectPersonaje();
+		int eleccion=Lee.Entero();
+			switch (eleccion) {
+			case 0:
+				Principal(luchadores);
+				break;
+			case 1:
+				player=luchadores [0];
+				luchadores[0]=null;
+				break;
+			case 2:
+				player=luchadores [1];
+				luchadores[1]=null;
+				break;
+			case 3:
+				player=luchadores [2];
+				luchadores[2]=null;
+				break;
+			case 4:
+				player=luchadores [3];
+				luchadores[3]=null;
+				break;
+			case 5:
+				player=luchadores [4];
+				luchadores[4]=null;
+				break;
+			case 6:
+				player=luchadores [5];
+				luchadores[5]=null;
+				break;
+			default:
+				Imprimir.error();
+				break;
+			}
+		Imprimir.eleccion(player1);
+		Imprimir.pausa();
+		
+		return eleccion;
+	}
 	/**
 	 * Metodo para seleccionar uno de los personajes dentro del array de personajes, al seleccionarlo este 
 	 * no se podrá volver a seleccionar
@@ -55,42 +102,50 @@ public class Partida {
 	 */
 	public static int seleccionarPersonajePlayer1(Personaje [] luchadores) {
 		
+		int eleccion=0;
 		Menus.muestraPersonajes(luchadores);
 		Menus.menuSelectPersonaje();
-		int eleccion=Lee.Entero();
-		switch (eleccion) {
-		case 1:
-			player1=luchadores [0];
-			luchadores[0]=null;
-			break;
-		case 2:
-			player1=luchadores [1];
-			luchadores[1]=null;
-			break;
-		case 3:
-			player1=luchadores [2];
-			luchadores[2]=null;
-			break;
-		case 4:
-			player1=luchadores [3];
-			luchadores[3]=null;
-			break;
-		case 5:
-			player1=luchadores [4];
-			luchadores[4]=null;
-			break;
-		case 6:
-			player1=luchadores [5];
-			luchadores[5]=null;
-			break;
-		default:
-			Imprimir.error();
-			break;
+		
+			eleccion=Lee.Entero();
+			switch (eleccion) {
+			case 0:
+				break;
+			case 1:
+				player1=luchadores [0];
+				luchadores[0]=null;
+				break;
+			case 2:
+				player1=luchadores [1];
+				luchadores[1]=null;
+				break;
+			case 3:
+				player1=luchadores [2];
+				luchadores[2]=null;
+				break;
+			case 4:
+				player1=luchadores [3];
+				luchadores[3]=null;
+				break;
+			case 5:
+				player1=luchadores [4];
+				luchadores[4]=null;
+				break;
+			case 6:
+				player1=luchadores [5];
+				luchadores[5]=null;
+				break;
+			default:
+				Imprimir.error();
+				break;
+			}
+			
+		if(eleccion!=0) {
+			Imprimir.eleccion(player1);
+			Imprimir.pausa();
 		}
-		Imprimir.eleccion(player1);
-		Imprimir.pausa();
 		
 		return eleccion;
+
 	}
 	/**
 	 * Mismo metodo que seleccionarPersonajePlayer1 pero para otro jugador en el caso de que se quiera
@@ -104,6 +159,8 @@ public class Partida {
 		Menus.menuSelectPersonaje();
 		int eleccion=Lee.Entero();
 		switch (eleccion) {
+		case 0:
+			break;
 		case 1:
 			player2=luchadores [0];
 			luchadores[0]=null;
@@ -132,8 +189,11 @@ public class Partida {
 			Imprimir.error();
 			break;
 		}
-		Imprimir.eleccion(player2);
-		Imprimir.pausa();
+		if(eleccion!=0) {
+			Imprimir.eleccion(player2);
+			Imprimir.pausa();
+		}
+
 		
 		return eleccion;
 	}
@@ -142,8 +202,9 @@ public class Partida {
 	 * Metodo para que la CPU eliga aleatoriamente uno de los personajes disponibles en el caso de que el usuario
 	 * quiera jugar contra la máquina
 	 * @param luchadores: Recibe el array de personajes disponibles
+	 * @return devuelve la eleccion de la cpu
 	 */
-	public static void seleccionarCPU(Personaje [] luchadores) {
+	public static int seleccionarCPU(Personaje [] luchadores) {
 		Random rand = new Random(System.nanoTime());
 
 		for (int i = 0; i < luchadores.length; i++) {
@@ -155,15 +216,22 @@ public class Partida {
 			}
 		}
 		
+		for (int i = 0; i < luchadores.length; i++) {
+			if (cpu==luchadores[i]) {
+				luchadores[i]=null;
+			}
+		}
+		return rand.nextInt(luchadores.length);
 	}
 	
 	/**
 	 * Metodo el en el cual se desarrollara toda la lucha en el caso de usuario vs usuario 
 	 */
-	public static void lucha1() {
+	public static void lucha() {
 		
 		int opcion=0;
 		int opcion2=0;
+		int recuperacion=60;
 		int curas=2;
 		int curas2=2;
 		
@@ -190,7 +258,7 @@ public class Partida {
 						break;
 					case 3:
 						if(curas>0) {
-							player1.curar(curas);
+							player1.curar(recuperacion);
 							curas=curas-1;
 							Dibujos.curar();
 							Imprimir.curar(player1);
@@ -224,7 +292,7 @@ public class Partida {
 							break;
 						case 3:
 							if(curas2>0) {
-								player2.curar(curas2);
+								player2.curar(recuperacion);
 								curas2=curas2-1;
 								Dibujos.curar();
 								Imprimir.curar(player2);
@@ -264,6 +332,8 @@ public class Partida {
 		}
 
 		Imprimir.end();
+		player1=null;
+		player2=null;
 	}
 	
 	/**
@@ -271,15 +341,16 @@ public class Partida {
 	 * @param luchadores: recibira el array de luchadores para que la maquina seleccione un personaje del array hasta
 	 * que se acabe
 	 */
-	public static void lucha2(Personaje [] luchadores) {
+	public static void lucha(Personaje [] luchadores) {
 		
 		int opcion=0;
-		int recuperacion=25;
+		int recuperacion=60;
 		int curas=2;
 		int curas2=2;
 		int terminar=luchadores.length;
 		
 		while(terminar!=0 && terminar!=-1) {
+			
 			seleccionarCPU(luchadores);
 			
 			 
@@ -384,6 +455,8 @@ public class Partida {
 		if(terminar==0) {
 			Imprimir.completo();
 		}
+		player1=null;
+		cpu=null;
 	}
 	
 	/**

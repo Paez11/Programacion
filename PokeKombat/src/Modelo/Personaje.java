@@ -114,8 +114,9 @@ public class Personaje {
 	 */
 	public int curar(int curacion) {
 		int vidapost=this.vida+vida;
-		if(vidapost<=vidaMaxima)
+		if(vidapost<=vidaMaxima) {
 			this.vida = vidapost;
+		}
 		
 		return (this.vida+curacion);
 	}

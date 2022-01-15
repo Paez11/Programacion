@@ -1,6 +1,5 @@
 package Vistas;
 
-import java.util.Scanner;
 
 import Modelo.Personaje;
 
@@ -27,6 +26,7 @@ public class Menus {
 		System.out.println("Pulsa 4 para elegir a Wanda");
 		System.out.println("Pulsa 5 para elegir a Shoto");
 		System.out.println("Pulsa 6 para elegir a ????");
+		System.out.println("Pulsa 0 para volver al menu");
 		System.out.println();
 		System.out.println("Selecciona un personaje: ");
 	}
@@ -42,9 +42,12 @@ public class Menus {
 		for (int i = 0; i < luchadores.length; i++) {
 			if(luchadores[i]==null) {
 				System.out.println("luchador no disponible");
+				System.out.println();
+			}else {
+				System.out.println(luchadores[i]);
+				System.out.println();
 			}
-			System.out.println(luchadores[i]);
-			System.out.println();
+
 		}
 	}
 	

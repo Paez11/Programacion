@@ -38,7 +38,6 @@ public class Controlador {
 		//Partida.lucha();
 		
 		Imprimir.salir();
-
 	}
 
 	
