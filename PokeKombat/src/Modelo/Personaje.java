@@ -92,9 +92,9 @@ public class Personaje {
 	public int dano(int d) {
 		int d2=d-defender(defensaFisico());
 		if(d2>0) {
-			this.vida=this.vida-d2;
+			setVida(this.vida-d2);
 		}
-		return this.vida;
+		return getVida();
 	}
 	
 	/**
@@ -113,12 +113,12 @@ public class Personaje {
 	 * @return devulve el valor completo de la vida con lo que se ha curado
 	 */
 	public int curar(int curacion) {
-		int vidapost=this.vida+vida;
-		if(vidapost<=vidaMaxima) {
-			this.vida = vidapost;
+		int vidapost=this.vida+curacion;
+		if(vidapost>vidaMaxima) {
+			vidapost=vidaMaxima;;
 		}
 		
-		return (this.vida+curacion);
+		return vidapost;
 	}
 
 	@Override

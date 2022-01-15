@@ -52,48 +52,6 @@ public class Partida {
 	}
 
 	
-	public static int seleccionarPersonaje(Personaje [] luchadores, Personaje player) {
-		
-		Menus.muestraPersonajes(luchadores);
-		Menus.menuSelectPersonaje();
-		int eleccion=Lee.Entero();
-			switch (eleccion) {
-			case 0:
-				Principal(luchadores);
-				break;
-			case 1:
-				player=luchadores [0];
-				luchadores[0]=null;
-				break;
-			case 2:
-				player=luchadores [1];
-				luchadores[1]=null;
-				break;
-			case 3:
-				player=luchadores [2];
-				luchadores[2]=null;
-				break;
-			case 4:
-				player=luchadores [3];
-				luchadores[3]=null;
-				break;
-			case 5:
-				player=luchadores [4];
-				luchadores[4]=null;
-				break;
-			case 6:
-				player=luchadores [5];
-				luchadores[5]=null;
-				break;
-			default:
-				Imprimir.error();
-				break;
-			}
-		Imprimir.eleccion(player1);
-		Imprimir.pausa();
-		
-		return eleccion;
-	}
 	/**
 	 * Metodo para seleccionar uno de los personajes dentro del array de personajes, al seleccionarlo este 
 	 * no se podrá volver a seleccionar
@@ -105,7 +63,7 @@ public class Partida {
 		int eleccion=0;
 		Menus.muestraPersonajes(luchadores);
 		Menus.menuSelectPersonaje();
-		
+		do {
 			eleccion=Lee.Entero();
 			switch (eleccion) {
 			case 0:
@@ -138,6 +96,7 @@ public class Partida {
 				Imprimir.error();
 				break;
 			}
+		}while(eleccion>6);
 			
 		if(eleccion!=0) {
 			Imprimir.eleccion(player1);
@@ -155,40 +114,44 @@ public class Partida {
 	 */
 	public static int seleccionarPersonajePlayer2(Personaje [] luchadores) {
 		
+		int eleccion=0;
 		Menus.muestraPersonajes(luchadores);
 		Menus.menuSelectPersonaje();
-		int eleccion=Lee.Entero();
-		switch (eleccion) {
-		case 0:
-			break;
-		case 1:
-			player2=luchadores [0];
-			luchadores[0]=null;
-			break;
-		case 2:
-			player2=luchadores [1];
-			luchadores[1]=null;
-			break;
-		case 3:
-			player2=luchadores [2];
-			luchadores[2]=null;
-			break;
-		case 4:
-			player2=luchadores [3];
-			luchadores[3]=null;
-			break;
-		case 5:
-			player2=luchadores [4];
-			luchadores[4]=null;
-			break;
-		case 6:
-			player2=luchadores [5];
-			luchadores[5]=null;
-			break;
-		default:
-			Imprimir.error();
-			break;
-		}
+		do {
+			eleccion=Lee.Entero();
+			switch (eleccion) {
+			case 0:
+				break;
+			case 1:
+				player2=luchadores [0];
+				luchadores[0]=null;
+				break;
+			case 2:
+				player2=luchadores [1];
+				luchadores[1]=null;
+				break;
+			case 3:
+				player2=luchadores [2];
+				luchadores[2]=null;
+				break;
+			case 4:
+				player2=luchadores [3];
+				luchadores[3]=null;
+				break;
+			case 5:
+				player2=luchadores [4];
+				luchadores[4]=null;
+				break;
+			case 6:
+				player2=luchadores [5];
+				luchadores[5]=null;
+				break;
+			default:
+				Imprimir.error();
+				break;
+			}
+		}while(eleccion>6);
+
 		if(eleccion!=0) {
 			Imprimir.eleccion(player2);
 			Imprimir.pausa();
@@ -208,7 +171,7 @@ public class Partida {
 		Random rand = new Random(System.nanoTime());
 
 		for (int i = 0; i < luchadores.length; i++) {
-			if (luchadores[i]!=null && luchadores[i].getVida()>0) {
+			if (luchadores[i]!=null) {
 				cpu=luchadores[rand.nextInt(luchadores.length)];
 				i=luchadores.length;
 			}else {
@@ -241,73 +204,82 @@ public class Partida {
 		
 		
 			do {
-				Menus.menuLucha();
-				opcion=Lee.Entero();
 				
-				switch (opcion) {
-					case 1:
-						player2.dano(player1.ataqueFisico());
-						Dibujos.atacar();
-						Imprimir.ataque(player1, player2);
-						
-						break;
-					case 2:
-						player1.defender(player1.defensaFisico());
-						Dibujos.defender();
-						Imprimir.defensa(player1);
-						break;
-					case 3:
-						if(curas>0) {
-							player1.curar(recuperacion);
-							curas=curas-1;
-							Dibujos.curar();
-							Imprimir.curar(player1);
-						}else {
-							Imprimir.sinCuras();
-						}
-						break;
-					case 4:
-						Imprimir.huir();
-						player1.setVida(-99);
-						Imprimir.pausa();
-						break;
-					default:
-						break;
-				}
-				if (player2.getVida()>0 && player1.getVida()>0) {
-					
+				do {
 					Menus.menuLucha();
-					opcion2=Lee.Entero();
+					opcion=Lee.Entero();
 					
-					switch (opcion2) {
+					switch (opcion) {
 						case 1:
-							player1.dano(player2.ataqueFisico());
+							player2.dano(player1.ataqueFisico());
 							Dibujos.atacar();
-							Imprimir.ataque(player2, player1);
+							Imprimir.ataque(player1, player2);
+							
 							break;
 						case 2:
-							player2.defender(player2.defensaFisico());
+							player1.defender(player1.defensaFisico());
 							Dibujos.defender();
-							Imprimir.defensa(player2);
+							Imprimir.defensa(player1);
 							break;
 						case 3:
-							if(curas2>0) {
-								player2.curar(recuperacion);
-								curas2=curas2-1;
+							if(curas>0) {
+								player1.curar(recuperacion);
+								curas=curas-1;
 								Dibujos.curar();
-								Imprimir.curar(player2);
+								Imprimir.curar(player1);
 							}else {
 								Imprimir.sinCuras();
 							}
 							break;
 						case 4:
 							Imprimir.huir();
-							player2.setVida(-99);
+							player1.setVida(-99);
 							Imprimir.pausa();
 							break;
 						default:
+							Imprimir.error();
 							break;
 					}
+				}while(opcion>4 || opcion<1);
+
+				if (player2.getVida()>0 && player1.getVida()>0) {
+
+					do {
+						Menus.menuLucha();
+						opcion2=Lee.Entero();
+						
+						switch (opcion2) {
+							case 1:
+								player1.dano(player2.ataqueFisico());
+								Dibujos.atacar();
+								Imprimir.ataque(player2, player1);
+								break;
+							case 2:
+								player2.defender(player2.defensaFisico());
+								Dibujos.defender();
+								Imprimir.defensa(player2);
+								break;
+							case 3:
+								if(curas2>0) {
+									player2.curar(recuperacion);
+									curas2=curas2-1;
+									Dibujos.curar();
+									Imprimir.curar(player2);
+								}else {
+									Imprimir.sinCuras();
+								}
+								break;
+							case 4:
+								Imprimir.huir();
+								player2.setVida(-99);
+								Imprimir.pausa();
+								break;
+							default:
+								Imprimir.error();
+								break;
+						}
+					}while(opcion2>4 || opcion2<1);
+
 					Imprimir.pausa();
 					Imprimir.status(player1, curas);
 					Imprimir.status(player2, curas2);
@@ -361,38 +333,47 @@ public class Partida {
 			
 			
 				do {
-					Menus.menuLucha();
-					opcion=Lee.Entero();
-					
-					switch (opcion) {
-						case 1:
-							cpu.dano(player1.ataqueFisico());
-							Dibujos.atacar();
-							Imprimir.ataque(player1, cpu);
-							break;
-						case 2:
-							player1.defender(player1.defensaFisico());
-							Dibujos.defender();
-							Imprimir.defensa(player1);
-							break;
-						case 3:
-							if(curas>0) {
-								player1.curar(recuperacion);
-								curas=curas-1;
-								Dibujos.curar();
-								Imprimir.curar(player1);
-							}else {
-								Imprimir.sinCuras();
-							}
-							break;
-						case 4:
-							Imprimir.huir();
-							player1.setVida(-99);
-							Imprimir.pausa();
-							break;
-						default:
-							break;
-					}
+					boolean confirmar=false;
+					do {
+						Menus.menuLucha();
+						opcion=Lee.Entero();
+						
+						switch (opcion) {
+							case 1:
+								cpu.dano(player1.ataqueFisico());
+								Dibujos.atacar();
+								Imprimir.ataque(player1, cpu);
+								confirmar=true;
+								break;
+							case 2:
+								player1.defender(player1.defensaFisico());
+								Dibujos.defender();
+								Imprimir.defensa(player1);
+								confirmar=true;
+								break;
+							case 3:
+								if(curas>0) {
+									player1.curar(recuperacion);
+									curas=curas-1;
+									Dibujos.curar();
+									Imprimir.curar(player1);
+								}else {
+									Imprimir.sinCuras();
+								}
+								confirmar=true;
+								break;
+							case 4:
+								Imprimir.huir();
+								player1.setVida(-99);
+								Imprimir.pausa();
+								confirmar=true;
+								break;
+							default:
+								Imprimir.error();
+								break;
+						}
+					}while(!confirmar);
+
 					if(cpu.getVida()>0 && player1.getVida()>0) {
 						switch (cpuDecision()) {
 							case 0:

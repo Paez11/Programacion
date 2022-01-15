@@ -31,7 +31,7 @@ public class Mago extends Personaje{
 	public int defensaFisico() {
 		int defensa=rand.nextInt(this.defensa);
 		
-		return (this.poderDefensa+defensa);
+		return (defensa+this.poderDefensa);
 	}
 	
 	
