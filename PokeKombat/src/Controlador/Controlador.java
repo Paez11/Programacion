@@ -35,8 +35,6 @@ public class Controlador {
 		
 		Partida.Principal(luchadores);
 		
-		//Partida.lucha();
-		
 		Imprimir.salir();
 	}
 

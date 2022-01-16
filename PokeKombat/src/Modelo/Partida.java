@@ -169,6 +169,7 @@ public class Partida {
 	 */
 	public static int seleccionarCPU(Personaje [] luchadores) {
 		Random rand = new Random(System.nanoTime());
+		
 
 		for (int i = 0; i < luchadores.length; i++) {
 			if (luchadores[i]!=null) {
@@ -319,7 +320,8 @@ public class Partida {
 		int recuperacion=60;
 		int curas=2;
 		int curas2=2;
-		int terminar=luchadores.length;
+		int terminar=5;
+		
 		
 		while(terminar!=0 && terminar!=-1) {
 			

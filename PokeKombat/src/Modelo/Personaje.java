@@ -102,6 +102,7 @@ public class Personaje {
 	 * @param defensa: la variable que recibira la funcion que funcionara como su defensa
 	 */
 	public int defender(int defensa) {
+		
 		defensa=defensa+this.defensa;
 		
 		return defensa;
@@ -117,6 +118,7 @@ public class Personaje {
 		if(vidapost>vidaMaxima) {
 			vidapost=vidaMaxima;;
 		}
+		setVida(vidapost);
 		
 		return vidapost;
 	}
