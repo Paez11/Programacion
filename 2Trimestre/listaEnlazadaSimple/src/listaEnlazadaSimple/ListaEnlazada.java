@@ -1,4 +1,4 @@
-package listaEnlazadaSimple;
+	package listaEnlazadaSimple;
 
 public class ListaEnlazada<T> {
 	//Atributos
