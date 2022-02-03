@@ -43,20 +43,21 @@ public class ListaDobleEnlazada<T> {
 	 */
 	public int push(T v) {
 		
-		Nodo<T> nuevo = new Nodo<T>(v);
-		Nodo<T> aux = this.primero;
-		
-		if(aux==null) {
-			this.unshift(v);
+		if(v!=null) {
+			Nodo<T> nuevo = new Nodo<T>(v);
+			if(this.primero==null) {
+				this.unshift(v);
+			}else {
+				Nodo<T> aux = this.primero;
+				while(aux.siguiente!=null) {
+					aux=aux.siguiente;
+				}
+				aux.siguiente=nuevo;
+				nuevo.anterior=aux;
+			}
+			size++;
 		}
-		
-		while(aux.siguiente!=null) {
-			aux=aux.siguiente;
-		}
-		aux.siguiente=nuevo;
-		nuevo.anterior=aux;
-		size++;
-		
+
 		return size;
 	}
 
@@ -69,15 +70,17 @@ public class ListaDobleEnlazada<T> {
 		
 		Nodo<T> nuevo = new Nodo<T>(v);
 		
-		if(this.primero==null) {
-			this.primero=nuevo;
+		if(v!=null) {
+			if(this.primero==null) {
+				this.primero=nuevo;
+			}else {
+				this.primero.anterior=nuevo;
+				nuevo.siguiente=this.primero;
+				this.primero=nuevo;
+			}
 			size++;
-		}else {
-			
-			this.primero.anterior=nuevo;
-			nuevo.siguiente=this.primero;
-			this.primero=nuevo;
 		}
+
 		
 		return size;
 	}
@@ -87,24 +90,20 @@ public class ListaDobleEnlazada<T> {
 	 * @return el valor del ultimo nodo o null si la lista est� v�cia
 	 */
 	public T pop() {
-		Nodo <T> eliminado = this.primero;
-		T dato = eliminado.getDato();
+		T dato = null;
 		
 		if(this.primero.siguiente==null) {
 			this.primero=null;
 		}else {
-			eliminado=this.primero.siguiente;
 			Nodo<T> aux = this.primero;
-			while(eliminado.siguiente!=null) {
-				aux=eliminado;
-				eliminado=eliminado.siguiente;
+			while(aux.siguiente!=null) {
+				aux=aux.siguiente;
 			}
-			aux=eliminado.anterior;
-			eliminado.siguiente=null;
-			
-			
+			dato=aux.getDato();
+			aux.anterior.siguiente=null;
+			aux=null;
 		}
-		
+		size--;
 		
 		return dato;
 	}
@@ -117,6 +116,14 @@ public class ListaDobleEnlazada<T> {
 		Nodo <T> aux = this.primero;
 		T dato = null;
 		
+		if(this.primero!=null) {
+			dato=this.primero.getDato();
+			this.primero=this.primero.siguiente;
+			if(this.primero!=null) {
+				this.primero.anterior=null;
+			}
+			size--;
+		}
 		
 		return dato;
 	}
@@ -127,7 +134,23 @@ public class ListaDobleEnlazada<T> {
 	 * @return posici�n del nodo que lo contiene o -1 si no existe o la lista est� vac�a
 	 */
 	public int contains(T v) {
+		int pos=-1;
+		boolean result=false;
+		Nodo<T> aux=this.primero;
 		
+		while(aux!=null && !result) {
+			pos++;
+			if(aux.getDato().equals(v)) {
+				result=true;
+			}
+			aux=aux.siguiente;
+		}
+		if(!result) {
+			pos=-1;
+		}
+		
+		
+		return pos;
 	}
 	
 	/**
@@ -136,7 +159,21 @@ public class ListaDobleEnlazada<T> {
 	 * @return su valor o null si no es una posici�n correcto o la lista est� vac�a
 	 */
 	public T get(int pos) {
+		T dato = null;
 		
+		if(pos>=0 && pos<size) {
+			Nodo<T> aux=this.primero;
+			int cont=0;
+			while(aux!=null && cont!=pos) {
+				cont++;
+				aux=aux.siguiente;
+			}
+			if(cont==pos && aux!=null) {
+				dato=aux.getDato();
+			}
+		}
+		
+		return dato;
 	}
 
 	/**
@@ -147,6 +184,30 @@ public class ListaDobleEnlazada<T> {
 	 */
 	public int put(T value, int pos) {
 		
+		if(value!=null) {
+			Nodo<T> nuevo = new Nodo<>(value);
+			if(this.primero==null) {
+				size=this.push(value);
+			}else {
+				if(pos>=0 && pos<size) {
+					Nodo<T> aux=this.primero;
+					int cont=0;
+					while(aux!=null && cont!=pos) {
+						cont++;
+						aux=aux.siguiente;
+					}
+					if(cont==pos && aux!=null) {
+						nuevo.siguiente=aux;
+						aux.anterior=nuevo;
+					}else {
+						aux=nuevo;
+					}
+				}
+				size++;
+			}
+		}
+		
+		return size;
 	}
 
 	/**
@@ -156,6 +217,27 @@ public class ListaDobleEnlazada<T> {
 	 */
 	public int remove(int pos) {
 		
+		if(pos>=0 && pos<size) {
+			Nodo<T> eliminado = this.primero;
+			Nodo<T> aux=null;
+			if(eliminado!=null) {
+				int cont=0;
+				while(eliminado!=null && cont!=pos) {
+					aux=eliminado;
+					eliminado=eliminado.siguiente;
+					cont++;
+				}
+				if(cont==pos && aux!=null) {
+					aux.siguiente=eliminado.siguiente;
+					aux.anterior=aux.siguiente;
+					aux.siguiente=aux.anterior;
+					eliminado.siguiente=null;
+				}
+				size--;
+			}
+		}
+		
+		return size;
 	}
 	
 	/**
@@ -165,10 +247,26 @@ public class ListaDobleEnlazada<T> {
 	 */
 	public int removeElement(T v) {
 		
+		if(v!=null) {
+			int pos=contains(v);
+			if(pos!=-1) {
+				remove(pos);
+			}
+		}
+		
+		return size;
 	}
+	
+	
 	@Override
 	public String toString() {
-		return  primero + "," + primero.siguiente + "[" + size +"]";
+		String result="";
+		Nodo<T> aux=this.primero;
+		while(aux!=null) {
+			result+=aux;
+			aux=aux.siguiente;
+		}
+		return  result +" | " + "("+ size +")";
 	}
 	
 }

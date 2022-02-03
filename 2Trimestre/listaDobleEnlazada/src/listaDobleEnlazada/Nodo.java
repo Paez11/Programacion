@@ -28,6 +28,11 @@ public class Nodo<T> {
 		this.dato = dato;
 	}
 
+	@Override
+	public String toString() {
+		return  " "+dato+" ";
+	}
+	
 	
 	
 }
