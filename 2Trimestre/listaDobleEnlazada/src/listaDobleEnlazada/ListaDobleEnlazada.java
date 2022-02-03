@@ -39,53 +39,71 @@ public class ListaDobleEnlazada<T> {
 	/**
 	 * Inserta un nodo al final de la lista
 	 * @param v el valor del nodo insertado
-	 * @return el nuevo tamaño de la lista
+	 * @return el nuevo tamaï¿½o de la lista
 	 */
 	public int push(T v) {
-		int size=0;
+		
 		Nodo<T> nuevo = new Nodo<T>(v);
 		Nodo<T> aux = this.primero;
+		
+		if(aux==null) {
+			this.unshift(v);
+		}
 		
 		while(aux.siguiente!=null) {
 			aux=aux.siguiente;
 		}
-		aux=nuevo;
-		aux=aux.anterior;
-		aux.siguiente=null;
+		aux.siguiente=nuevo;
+		nuevo.anterior=aux;
+		size++;
 		
-		return size+1;
+		return size;
 	}
 
 	/**
 	 * Insertar un nodo al principio de la lista
 	 * @param v el valor del nodo insertado
-	 * @return el nuevo tamaño de la lista
+	 * @return el nuevo tamaï¿½o de la lista
 	 */
 	public int unshift(T v) {
-		int size=0;
+		
 		Nodo<T> nuevo = new Nodo<T>(v);
 		
 		if(this.primero==null) {
 			this.primero=nuevo;
-			this.primero.anterior=null;
-			this.primero.siguiente=null;
-			size=+1;
+			size++;
 		}else {
-			this.primero.siguiente=nuevo;
-			nuevo.siguiente=nuevo;
+			
+			this.primero.anterior=nuevo;
+			nuevo.siguiente=this.primero;
+			this.primero=nuevo;
 		}
 		
 		return size;
 	}
 	
 	/**
-	 * Devuelve el valor del último nodo de la lista y lo elimina (extrae)
-	 * @return el valor del ultimo nodo o null si la lista está vácia
+	 * Devuelve el valor del ï¿½ltimo nodo de la lista y lo elimina (extrae)
+	 * @return el valor del ultimo nodo o null si la lista estï¿½ vï¿½cia
 	 */
 	public T pop() {
-		Nodo <T> aux = this.primero;
-		T dato = null;
+		Nodo <T> eliminado = this.primero;
+		T dato = eliminado.getDato();
 		
+		if(this.primero.siguiente==null) {
+			this.primero=null;
+		}else {
+			eliminado=this.primero.siguiente;
+			Nodo<T> aux = this.primero;
+			while(eliminado.siguiente!=null) {
+				aux=eliminado;
+				eliminado=eliminado.siguiente;
+			}
+			aux=eliminado.anterior;
+			eliminado.siguiente=null;
+			
+			
+		}
 		
 		
 		return dato;
@@ -93,7 +111,7 @@ public class ListaDobleEnlazada<T> {
 	
 	/**
 	 * Devuelve el valor del primer nodo de la lista y lo elimina (extrae)
-	 * @return el valor del primer nodo o null si la lista está vacía
+	 * @return el valor del primer nodo o null si la lista estï¿½ vacï¿½a
 	 */
 	public T shift() {
 		Nodo <T> aux = this.primero;
@@ -104,37 +122,37 @@ public class ListaDobleEnlazada<T> {
 	}
 	
 	/**
-	 * Busca el valor pasado como parámetro y devuelve la posición del primer nodo que lo contenga
+	 * Busca el valor pasado como parï¿½metro y devuelve la posiciï¿½n del primer nodo que lo contenga
 	 * @param v valor a buscar
-	 * @return posición del nodo que lo contiene o -1 si no existe o la lista está vacía
+	 * @return posiciï¿½n del nodo que lo contiene o -1 si no existe o la lista estï¿½ vacï¿½a
 	 */
 	public int contains(T v) {
 		
 	}
 	
 	/**
-	 * Devuelve el valor del nodo que se encuentra en la posición indicada
-	 * @param pos posición del nodo
-	 * @return su valor o null si no es una posición correcto o la lista está vacía
+	 * Devuelve el valor del nodo que se encuentra en la posiciï¿½n indicada
+	 * @param pos posiciï¿½n del nodo
+	 * @return su valor o null si no es una posiciï¿½n correcto o la lista estï¿½ vacï¿½a
 	 */
 	public T get(int pos) {
 		
 	}
 
 	/**
-	 * Insertar un nodo con el valor pasado en la posición indicada
+	 * Insertar un nodo con el valor pasado en la posiciï¿½n indicada
 	 * @param value el valor del nuevo nodo a insertar
-	 * @param pos la posición donde se desea insertar
-	 * @return el nuevo tamaño de la lista
+	 * @param pos la posiciï¿½n donde se desea insertar
+	 * @return el nuevo tamaï¿½o de la lista
 	 */
 	public int put(T value, int pos) {
 		
 	}
 
 	/**
-	 * Elimina el nodo que se encuentre en la posición indicada
-	 * @param pos posición del nodo a eliminar 
-	 * @return el tamaño de la lista
+	 * Elimina el nodo que se encuentre en la posiciï¿½n indicada
+	 * @param pos posiciï¿½n del nodo a eliminar 
+	 * @return el tamaï¿½o de la lista
 	 */
 	public int remove(int pos) {
 		
@@ -143,7 +161,7 @@ public class ListaDobleEnlazada<T> {
 	/**
 	 * Elimina el nodo que contenga el valor indicado
 	 * @param v valor del nodo a eliminar 
-	 * @return el tamaño de la lista
+	 * @return el tamaï¿½o de la lista
 	 */
 	public int removeElement(T v) {
 		
