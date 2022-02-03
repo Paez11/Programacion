@@ -1,15 +1,41 @@
 package listaDobleEnlazada;
 
+
 public class ListaDobleEnlazada<T> {
 	private Nodo<T> primero;
 	private int size;
 	
 	
-	public ListaDobleEnlazada(Nodo<T> primero, int size) {
-		this.primero = primero;
-		this.size = size;
+	public ListaDobleEnlazada() {
+		this.primero = null;
+		this.size = 0;
 	}
 	
+	
+	public Nodo<T> getPrimero() {
+		return primero;
+	}
+
+
+
+	public void setPrimero(Nodo<T> primero) {
+		this.primero = primero;
+	}
+
+
+
+	public int getSize() {
+		return size;
+	}
+
+
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+
+
 	/**
 	 * Inserta un nodo al final de la lista
 	 * @param v el valor del nodo insertado
@@ -18,10 +44,14 @@ public class ListaDobleEnlazada<T> {
 	public int push(T v) {
 		int size=0;
 		Nodo<T> nuevo = new Nodo<T>(v);
+		Nodo<T> aux = this.primero;
 		
-		while(nuevo.siguiente!=null) {
-			nuevo=nuevo.siguiente;
+		while(aux.siguiente!=null) {
+			aux=aux.siguiente;
 		}
+		aux=nuevo;
+		aux=aux.anterior;
+		aux.siguiente=null;
 		
 		return size+1;
 	}
@@ -35,10 +65,17 @@ public class ListaDobleEnlazada<T> {
 		int size=0;
 		Nodo<T> nuevo = new Nodo<T>(v);
 		
-		this.primero=nuevo;
-		nuevo=nuevo.anterior;
+		if(this.primero==null) {
+			this.primero=nuevo;
+			this.primero.anterior=null;
+			this.primero.siguiente=null;
+			size=+1;
+		}else {
+			this.primero.siguiente=nuevo;
+			nuevo.siguiente=nuevo;
+		}
 		
-		return size+1;
+		return size;
 	}
 	
 	/**
@@ -46,7 +83,12 @@ public class ListaDobleEnlazada<T> {
 	 * @return el valor del ultimo nodo o null si la lista está vácia
 	 */
 	public T pop() {
+		Nodo <T> aux = this.primero;
+		T dato = null;
 		
+		
+		
+		return dato;
 	}
 	
 	/**
@@ -54,7 +96,11 @@ public class ListaDobleEnlazada<T> {
 	 * @return el valor del primer nodo o null si la lista está vacía
 	 */
 	public T shift() {
+		Nodo <T> aux = this.primero;
+		T dato = null;
 		
+		
+		return dato;
 	}
 	
 	/**

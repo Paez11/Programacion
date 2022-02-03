@@ -7,12 +7,18 @@ public class Nodo<T> {
 	public Nodo<T> siguiente;	
 	
 	
+	
 	public Nodo(T dato) {
 		this.dato=dato;
 		this.anterior=null;
 		this.siguiente=null;
 	}
 
+	public Nodo(T dato, Nodo<T> anterior, Nodo<T> siguiente) {
+		this.dato=dato;
+		this.anterior=anterior;
+		this.siguiente=siguiente;
+	}
 
 	public T getDato() {
 		return dato;
