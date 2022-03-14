@@ -77,7 +77,7 @@ public class Store {
 		String s =this.name+": ";
 		
 		for (String i: store.keySet()) {
-			s+=i.toString();
+			s+=i+" "+store.get(i);
 		}
 		
 		return s;
