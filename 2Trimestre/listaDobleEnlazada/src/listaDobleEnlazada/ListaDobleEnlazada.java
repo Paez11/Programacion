@@ -187,7 +187,7 @@ public class ListaDobleEnlazada<T> {
 		if(value!=null) {
 			Nodo<T> nuevo = new Nodo<>(value);
 			if(this.primero==null) {
-				size=this.push(value);
+				this.push(value);
 			}else {
 				if(pos>=0 && pos<size) {
 					Nodo<T> aux=this.primero;
@@ -197,8 +197,11 @@ public class ListaDobleEnlazada<T> {
 						aux=aux.siguiente;
 					}
 					if(cont==pos && aux!=null) {
-						nuevo.siguiente=aux;
-						aux.anterior=nuevo;
+						aux.siguiente.anterior=nuevo;
+						nuevo.siguiente=aux.siguiente;
+						aux.siguiente=nuevo;
+						nuevo.anterior=aux;
+						
 					}else {
 						aux=nuevo;
 					}
