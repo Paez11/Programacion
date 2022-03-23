@@ -7,6 +7,7 @@ public class ejemplo {
     public static void main (String[] arg){
         Scanner teclado = new Scanner (System.in);
 
+        /*
         int n=0;
         int n2=0;
         System.out.println("Introduzca un numero");
@@ -15,6 +16,23 @@ public class ejemplo {
         System.out.println("Introduzca el exponente");
         n2=teclado.nextInt();
         System.out.println(potencia(n, n2));
+        */
+        /*
+        String cad="";
+        System.out.println("Introduzca una cadena: ");
+        cad=teclado.next();
+        System.out.println(cadena(cad,cad.length()-1));
+        */
+        /*
+        int n=0;
+        System.out.println("Introduzca un numero");
+        n=teclado.nextInt();
+        System.out.println(invNumero(n));
+        */
+        //System.out.println("Introduzca un numero");
+        //n=teclado.nextInt();
+        int[] miArray = new int[] {1,2,3,4,5};
+        invArray(miArray,0);
         teclado.close();
     }
 
@@ -72,5 +90,58 @@ public class ejemplo {
         }
 
         return result;
+    }
+
+    static String cadena(String cad, int longuitud){
+        String result="";
+
+        if(longuitud==0){
+            System.out.println(cad.charAt(longuitud));
+        }else{
+            System.out.println(cad.charAt(longuitud));
+            result=cadena(cad,longuitud-1);
+        }
+
+        return result;
+    }
+
+    static int invNumero(int n){
+        int result=0;
+        
+        if(n<10){
+            System.out.println(n);
+        }else{
+            System.out.println(n%10);
+            result=invNumero(n/10);
+        }
+
+        return result;
+    }
+
+    static void invArray(int[] miArray,int pos){
+
+        if(pos>=0){
+            if(pos==(miArray.length-1)){
+                System.out.println(miArray[pos]);
+            }else{
+                System.out.println(miArray[pos]);
+                invArray(miArray, pos+1);
+            }
+        }
+    }
+
+    static boolean encuentraArray(int[] miArray, int pos, int elem){
+        boolean encontrado=false;
+
+        if(pos>=0){
+            if(pos <miArray.length){
+                if(elem == miArray[pos]){
+                    encontrado=true;
+                }else{
+                    encontrado=encuentraArray(miArray, pos, elem);
+                }
+            }
+        }
+        return encontrado;
     }
 }
